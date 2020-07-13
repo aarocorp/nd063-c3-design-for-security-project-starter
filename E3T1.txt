@@ -1,3 +1,11 @@
 # Describe GuardDuty findings that were detected related to the brute force attack
+- High Severity SSHBrute Attack coming from our attack instance
+- Low Severity SSH Brute Attack coming from 10.192.11.24 toward the Web Service instance
+
 
 # Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+According to AWS Guard Duty documentation :
+GuardDuty voraciously consumes multiple data streams, including several threat intelligence feeds, staying aware of malicious IP addresses, devious domains, and more importantly, learning to accurately identify malicious or unauthorized behavior in your AWS accounts. In combination with information gleaned from your VPC Flow Logs, AWS CloudTrail Event Logs, and DNS logs, this allows GuardDuty to detect many different types of dangerous and mischievous behavior including probes for known vulnerabilities, port scans and probes, and access from unusual locations.
+
+This means that GuardDuty Was scanning VPCFlowLogs and came to the conclusion that a Brute Force Attack was ongoing as the log at this time was filled with attemps connexion from the
+Attack Instance to the Web Service instance (on port 22)

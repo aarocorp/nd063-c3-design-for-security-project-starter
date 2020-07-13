@@ -1,0 +1,23 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+Hereafter the vulnerabilities related to the code we just deployed :
+- securityhub-s3-bucket-server-side-encryption-enabled-8793e307 (server side encryption) :
+   Resources s3 buckets for free and secret recipes and for buckets used to log the VPC flow and the configs snapshots
+- securityhub-s3-bucket-logging-enabled-0daf7881 (logging activation on Buckets) :
+   Resources s3 buckets for free and secret recipes and for buckets used to log the VPC flow and the configs snapshots
+- securityhub-ec2-instance-managed-by-ssm-34e64f77 (EC2 not manager by AWS Systems Manager) :
+   EC2 instances created
+- securityhub-encrypted-volumes-1e88a6c6 (No encrypted volumes on EC2 instances) :
+   EC2 instances created
+- securityhub-restricted-ssh-9a9ce04c (incoming ssh allowed on the EC2 instances) :
+   EC2 instances created
+- securityhub-alb-http-to-https-redirection-check-9f8cd4e9 (HTTP redirection to HTTP lacking) :
+   Application Load Balancer
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+Hereafter are the recommendations on how to remediate:
+- Move the web service instance into the private subnet and add a NAT Gateway to ease the communication between Public Subnet #1 and private Subnet #1
+- Update the WebAppSG security group by allowing only access to port 5000 by the security group AppLoadBalancer (implicit all other access to Web Service instance must be removed)
+- Create VPC endpoints out of the S3 Buckets to restrict the access to only components of the vpc through a specific security group or to IAM Role
+- Create a IAM Role Policy allowing access to the EC2 instances thought AWS Session Manager
+- Enable Server Side encryption on both EC2 ELB storages and S3 Buckets
+- Enable Customer-Managed CMK for application side encryption

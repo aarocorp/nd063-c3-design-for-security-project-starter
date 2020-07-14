@@ -1,0 +1,25 @@
+# Identify tools that will allow you to do the following:
+
+## Scan infrastructure as code templates
+CloudFormation Template Scanner (unfortunately limited to CloudFormation)
+Source : https://www.cloudconformity.com/solutions/aws/cloudformation-template-scanner.html
+
+### Example vulnerability
+Security Group to permissive
+Complete list here https://us-west-2.cloudconformity.com/v1/services
+Recommend using Postman of firefox to have a readable json :-)
+
+##Scan AMI’s or containers for OS vulnerabilities
+Anchore
+Source : https://opensource.com/article/18/8/tools-container-security
+
+### Example vulnerability
+Known vulnerabilities CVE-XXXX-YYYYYYY
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+AWS inspector
+
+### Example vulnerability
+No encryption
+No session management
+No encrypted volumes

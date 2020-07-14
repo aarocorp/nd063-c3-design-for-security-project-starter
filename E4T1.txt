@@ -1,0 +1,13 @@
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+- Update the instance security group by allowing only connection from the ALB security group.
+   As the port 22 is not accessible nor forwarded from the ALB it should harden the security on the instance
+- Allow access to the instance through the session manager if that is really needed.
+   Create an IAM Role Policy allowing access to the EC2 instances thought AWS Session Manager.
+   This way access to the port 22 from the internet would be closed
+- Remove the instance from the public instance and put it behind a NAT in the private subnet.
+   Thus no more visible from the internet
+
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+To prevent the access we can make a use of the Customer-Managed CMK for the recipe encryption linked to a specific IAM Role policy.
+This role could then be given the the admin or anyone allow to access to the secret recipe.
+We could also make sure that any Policy given concerning the Amazon S3 service specifies the exact bucket the user/app should access (least privilege rule)

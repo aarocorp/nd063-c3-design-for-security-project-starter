@@ -10,4 +10,4 @@ No. After adding a server side encryption on the secret recipe bucket, the alrea
 That makes a lot of sense as the encryption is supposed to happen when the object is downloaded in the bucket.
 
 # What would happen if the original cloud formation templates are applied to this environment.
-Nothing will change as the resources already existed
+The configurations will be reset to the cloudformation initial values
